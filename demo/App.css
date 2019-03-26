@@ -1,0 +1,18 @@
+#demo {
+    left: 10px;
+    top: 10px;
+    background-color: whitesmoke;
+}
+
+#demo .items i {
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 14px;
+    height: 14px; 
+    display: inline-block;
+    background-image: url('unchecked.png');
+    vertical-align: middle;
+}
+#demo .items i.selected {
+    background-image: url('checked.png');
+}
