@@ -1,13 +1,49 @@
-<i class="scanex-tristate"></i>
+<i class="scanex-tristate" class:selected="state === 1" class:unselected="state === 0" class:indeterminate="state === 2" on:click="toggle(event)"></i>
 
 <script>
-    import './Tristate.css';
 
     export default {
         data () {
             return {                
-                items: []
+                items: [],
+                state: 0,
             };
+        },
+        onupdate ({changed, current}) {
+            if (changed.items) {
+                if (current.items.every (({checked}) => checked)) {
+                    this.set({state: 1});
+                }
+                else if (current.items.every (({checked}) => !checked)) {
+                    this.set({state: 0});
+                }
+                else {
+                    this.set({state: 2});
+                }
+            }
+        },
+        methods: {
+            toggle (e) {
+                e.stopPropagation();
+                const {state, items} = this.get();
+                switch (state) {
+                    case 0:
+                    case 2:
+                        items.forEach(item => {
+                            item.checked = true;
+                        });
+                        this.set({items});                        
+                        break;
+                    case 1:
+                        items.forEach(item => {
+                            item.checked = false;
+                        });
+                        this.set({items});                        
+                        break;                                            
+                    default:
+                        break;
+                }
+            }
         }
     };
 </script>

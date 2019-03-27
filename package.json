@@ -5,7 +5,7 @@
   "repository": "https://github.com/Scanex/Tristate.git",
   "main": "index.js",
   "browser": "public/main.js",
-  "module": "dist/scanex-input-integer.cjs.js",
+  "module": "dist/scanex-tristate.cjs.js",
   "author": "marunov@scanex.ru",
   "license": "",
   "scripts": {

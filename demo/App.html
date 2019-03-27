@@ -2,11 +2,14 @@
     <div>
         <Tristate bind:items />
     </div>
-    <div class="items">
-        {#each items as item}
-        <i class:selected="item.checked"></i>
+    <ul class="items">
+        {#each items as item, i}
+        <li on:click="toggle(event, i)">
+            <i class:selected="item.checked"></i>
+            <span>{item.name}</span>
+        </li>        
         {/each}
-    </div>
+    </ul>
 </div>
 
 
@@ -14,18 +17,27 @@
     import Tristate from '../src/Tristate.html';
     import './App.css';
 
+    let items = [];
+    const count = 10;
+
+    for (let i = 0, c = 'A'.charCodeAt(0); i < count; ++i, ++c) {
+        items.push ({name: String.fromCharCode(c), checked: false});
+    }
+
     export default {
         data() {
             return {
-                items: [
-                    {name: 'A', checked: false},
-                    {name: 'A', checked: false},
-                    {name: 'A', checked: false},
-                    {name: 'A', checked: false},
-                    {name: 'A', checked: false},
-                ]                
+                items          
             };            
         },
-        components: { Tristate },    
+        components: { Tristate },
+        methods: {
+            toggle (e, i) {
+                e.stopPropagation();
+                let {items} = this.get();
+                items[i].checked = !items[i].checked;
+                this.set({items});
+            }
+        }   
     };
 </script>

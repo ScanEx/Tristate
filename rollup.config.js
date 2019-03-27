@@ -51,13 +51,13 @@ export default [
             }),
             resolve({jsnext: true}),                        
             commonjs(),
-            css({dest: 'dist/scanex-input-integer.css', minified: false}),
-            copy({
-                files: [                    
-                    'src/Images/*.png',                    
-                ],
-                dest: 'dist',
-            }),
+            css({dest: 'dist/scanex-tristate.css', minified: false}),
+            // copy({
+            //     files: [                    
+            //         'src/Images/*.png',                    
+            //     ],
+            //     dest: 'dist',
+            // }),
             babel({include: ['src/**','node_modules/svelte/shared.js']}),
             // terser(),
         ],
