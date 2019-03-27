@@ -209,6 +209,7 @@ var protoDev = {
 function data() {
 	return {
 		items: [],
+		exclude: [],
 		state: 0
 	};
 }
@@ -245,17 +246,23 @@ function onupdate(_ref) {
 	    current = _ref.current;
 
 	if (changed.items) {
-		if (current.items.every(function (_ref2) {
+		var _get2 = this.get(),
+		    exclude$$1 = _get2.exclude;
+
+		if (current.items.every(function (_ref2, i) {
 			var checked = _ref2.checked;
-			return checked;
+			return exclude$$1.indexOf(i) === -1 && checked;
 		})) {
 			this.set({ state: 1 });
-		} else if (current.items.every(function (_ref3) {
+		} else if (current.items.every(function (_ref3, i) {
 			var checked = _ref3.checked;
-			return !checked;
+			return exclude$$1.indexOf(i) === -1 && !checked;
 		})) {
 			this.set({ state: 0 });
-		} else {
+		} else if (current.items.every(function (_ref4, i) {
+			var checked = _ref4.checked;
+			return exclude$$1.indexOf(i) === -1;
+		})) {
 			this.set({ state: 2 });
 		}
 	}

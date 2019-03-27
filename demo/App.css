@@ -8,6 +8,9 @@
     margin: 0px;
     padding: 0px;
 }
+#demo ul.items > li {
+    cursor: pointer;
+}
 #demo .items i {
     background-repeat: no-repeat;
     background-position: center;
@@ -35,5 +38,5 @@
     background-image: url('checked.png');
 }
 .scanex-tristate.indeterminate {
-    background-image: url('checked.png');
+    background-image: url('indeterminate.png');
 }
