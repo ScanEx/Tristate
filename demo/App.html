@@ -1,13 +1,15 @@
 <div>
     <div>
-        <Tristate bind:items />
+        <Tristate bind:items bind:exclude />
     </div>
     <ul class="items">
         {#each items as item, i}
+        {#if i !== source}
         <li on:click="toggle(event, i)">
             <i class:selected="item.checked"></i>
             <span>{item.name}</span>
-        </li>        
+        </li>
+        {/if}
         {/each}
     </ul>
 </div>
@@ -26,8 +28,12 @@
     export default {
         data() {
             return {
-                items          
+                items,                
+                source: 0
             };            
+        },
+        computed: {
+            exclude: ({source}) => [source]
         },
         components: { Tristate },
         methods: {
