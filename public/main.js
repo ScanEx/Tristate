@@ -279,18 +279,20 @@ var Demo = (function () {
   	var changed = _ref3.changed,
   	    current = _ref3.current;
 
-  	if (current.included.every(function (_ref4) {
-  		var checked = _ref4.checked;
-  		return checked;
-  	})) {
-  		this.set({ state: 1 });
-  	} else if (current.included.every(function (_ref5) {
-  		var checked = _ref5.checked;
-  		return !checked;
-  	})) {
-  		this.set({ state: 0 });
-  	} else {
-  		this.set({ state: 2 });
+  	if (changed.included) {
+  		if (current.included.every(function (_ref4) {
+  			var checked = _ref4.checked;
+  			return checked;
+  		})) {
+  			this.set({ state: 1 });
+  		} else if (current.included.every(function (_ref5) {
+  			var checked = _ref5.checked;
+  			return !checked;
+  		})) {
+  			this.set({ state: 0 });
+  		} else {
+  			this.set({ state: 2 });
+  		}
   	}
   }
   var file = "src\\Tristate.html";
