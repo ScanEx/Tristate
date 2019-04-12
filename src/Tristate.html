@@ -13,18 +13,16 @@
         computed: {
             included: ({items, exclude}) => items.filter(({checked}, i) => exclude.indexOf(i) === -1)
         },
-        onupdate ({changed, current}) {
-            if (changed.included) {                
-                if (current.included.every (({checked}) => checked)) {
-                    this.set({state: 1});
-                }
-                else if (current.included.every (({checked}) => !checked)) {
-                    this.set({state: 0});
-                }
-                else {
-                    this.set({state: 2});
-                }
+        onupdate ({changed, current}) {            
+            if (current.included.every (({checked}) => checked)) {
+                this.set({state: 1});
             }
+            else if (current.included.every (({checked}) => !checked)) {
+                this.set({state: 0});
+            }
+            else {
+                this.set({state: 2});
+            }            
         },
         methods: {
             toggle (e) {
